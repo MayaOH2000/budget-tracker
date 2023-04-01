@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../context/AppContext";
+import { V4 as uuidv4 } from 'uuid';
 
 const AddExpenseForm = () => {
 
-    //Need to know Name and Cost of expense
+    //Geeting dispatch from global state
+    const {dispatch} = useContext(AppContext);
 
+    //Need to know Name and Cost of expense
     const [name, setname] = useState('');
     const [cost, setCost] = useState('');
     const onSubmit = (event) => {
+        event.preventDefault();
+
+        //creating expense object
+        const expense = {
+            id: uuidv4(),
+            name: name,
+            cost: parseInt(cost),
+        };
+
+        dispatch({
+            type: 'ADD_EXPENSE',
+            payload: expense,
+        });
 
     };
 
