@@ -8,7 +8,7 @@ const Remaining = () => {
     const totalExpenses = expenses.reduce((total,item) =>    
     { return (total = total + item.cost);}, 0);
 
-    //red background with boostrap for over budget
+    //Determine background with boostrap for over or under budget
     const alertType = totalExpenses> budget ? 'alert-danger' : 'alert-success';
     
     return (<div className={`alert ${alertType}`}>

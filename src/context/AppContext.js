@@ -11,20 +11,27 @@ const AppReducer = (state, action) => {
     //Decides how to update state
     switch (action.type) {
         case 'ADD_EXPENSE':
-        
-//returning a new state object with payload
-//When we return something from a case statement,
-//the reducer automatically updates the state and re-renders the components
-
         return {
             ...state,
             expenses: [...state.expenses,action.payload],
         };
         
+        //using filter method to remove the expense
+        case 'DELETE_EXPENSE':
+        return {
+            ...state,
+            expenses: state.expenses.filter(
+                (expense) => expense.id !== action.payload
+            ),
+        };
+
         default:
             return state;
     }
 };
+//returning a new state object with payload
+//When we return something from a case statement,
+//the reducer automatically updates the state and re-renders the components
 
 const initialState = {
     
