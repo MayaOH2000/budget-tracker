@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import ExpenseIteam from './ExpenseIteam';
+import { AppContext } from '../context/AppContext';
 
 const ExpenseList = () => {
-    //creating an array of expense iteams
-    const expenses = [
-        { id: 12, name: 'Shopping', cost:45},
-        { id: 17, name: 'Grocerries', cost:145},
-        { id: 19, name: 'Other Expenses', cost:45},
-    ];
+//Passing AppContext to useContext
+//Connects compoent to context and allows to get values from global state
+    //using destruction to get values
+    const {expenses} = useContext(AppContext);
 
     //returning array values in a list using map function
     return (

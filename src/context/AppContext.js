@@ -1,11 +1,11 @@
 //Context API (Application Programming Interface )
-
 //initial State can be emtpy but helps do have dummy values
 
-//AppReducer is in charge of creating 
-//the new global state object
-//Based on an action type and a payload
+import { createContext, useReducer } from "react";
 
+//AppReducer is in charge of creating 
+//the new globol state object
+//Based on an action type and a payload
 //Accepts current state
 const AppReducer = (state, action) => {
     //Decides how to update state
@@ -18,7 +18,7 @@ const AppReducer = (state, action) => {
 const initialState = {
     
     //initial budget
-    budget: 2500,
+    budget: 5000,
 
     //dummy value of expenses
     expenses: [
