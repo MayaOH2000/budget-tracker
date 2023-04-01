@@ -10,9 +10,16 @@ import Remaining from './components/Remaining';
 import ExpenseTotal from './components/ExpenseTotal';
 import ExpenseList from './components/ExpenseList';
 import AddExpenseForm from './components/AddExpenseForm';
+import { AppProvider } from './context/AppContext';
 
 const App = () => {
-  return ( //create a continer class
+  return ( 
+    //Nesting compoents in App Provider 
+    //which allows componets to have accces to value object
+    //Same as AppProvider is exposes
+      <AppProvider>
+
+        {/*create a continer class */}
           <div className='container'>
 
             {/* Title of the pages*/}
@@ -35,6 +42,7 @@ const App = () => {
                   <div className='col-sm'><AddExpenseForm /></div>
                 </div>
           </div>
+        </AppProvider> 
     );
 };
 
