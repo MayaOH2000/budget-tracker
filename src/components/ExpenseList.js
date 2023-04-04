@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import ExpenseIteam from './ExpenseIteam';
+import ExpenseItem from './ExpenseItem';
 import { AppContext } from '../context/AppContext';
 
 const ExpenseList = () => {
@@ -12,7 +12,8 @@ const ExpenseList = () => {
     return (
         <ul className='list-group'>
             {expenses.map((expense) => 
-            (<ExpenseIteam id={expense.id}
+            (<ExpenseItem 
+                id={expense.id}
                 name={expense.name} 
                 cost={expense.cost} />))}
         </ul>

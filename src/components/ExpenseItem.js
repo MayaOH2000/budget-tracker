@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import { TiDelete } from 'react-icons/ti';
 import { AppContext } from "../context/AppContext";
 
-const ExpenseIteam = (props) => {
+const ExpenseItem = (props) => {
 
     const {dispatch} = useContext(AppContext);
 
@@ -18,9 +18,8 @@ const ExpenseIteam = (props) => {
      <li className='list-group-item d-flex justify-content-between align-items-center'>
         {props.name}
         <div>
-            <span className='badge badge-primary badge-pill mr-3'>
-                ${props.cost}
-            </span>
+            <span className='badge rounded-pill bg-primary'>
+             ${props.cost}</span>
 
             {/* Display delete icon from the icon package  */}
             <TiDelete size='1.5em' onClick={handleDeleteExpenses}></TiDelete>
@@ -29,4 +28,4 @@ const ExpenseIteam = (props) => {
     );
 };
 
-export default ExpenseIteam;
+export default ExpenseItem;
