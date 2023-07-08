@@ -23,7 +23,7 @@ const App = () => {
           <div className='container'>
 
             {/* Title of the pages*/}
-            <h1 className='mt-3'>My Budget Planner</h1>
+            <h1 className='mt-3'>Budget Planner</h1>
               
               {/* Bootstrap row */}
               <div className='row mt-3'>
