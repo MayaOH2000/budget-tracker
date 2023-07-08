@@ -8,15 +8,15 @@ const AddExpenseForm = () => {
     const {dispatch} = useContext(AppContext);
 
     //Need to know Name and Cost of expense
-    const [name, setname] = useState('');
+    const [name, setName] = useState('');
     const [cost, setCost] = useState('');
+    
     const onSubmit = (event) => {
         event.preventDefault();
 
         //creating expense object
         const expense = {
-            id: uuidv4(),
-            name: name,
+            id: uuidv4(), name,
             cost: parseInt(cost),
         };
 
@@ -24,6 +24,9 @@ const AddExpenseForm = () => {
             type: 'ADD_EXPENSE',
             payload: expense,
         });
+
+        setName('');
+        setCost('');
 
     };
 
@@ -36,15 +39,15 @@ const AddExpenseForm = () => {
                 <input trequired='required' 
                 type = 'text' className='form-control'
                 id='name' value={name}
-                onChange={(event) => setname(event.target.value)}>
+                onChange={(event) => setName(event.target.value)}>
                 </input>
             </div>
              <div className='col-sm'>
                 {/* Label for cost */}
                 <label for='cost'>Cost</label>
                  <input required='required'
-                 type='text' className='form-control'
-                 id='cost'value={cost}
+                 type='number' className='form-control'
+                 id='cost' value={cost}
                  onChange={(event) => setCost(event.target.value)}>
                  </input>
              </div>

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import ExpenseItem from './ExpenseItem';
 import { AppContext } from '../context/AppContext';
 
@@ -8,15 +8,35 @@ const ExpenseList = () => {
     //using destruction to get values
     const {expenses} = useContext(AppContext);
 
-    //returning array values in a list using map function
+    //filetring results for when searching
+    const [filterExpenses, setfilteredExpenses] = useState(expenses || []);
+
+    useEffect(() => {
+        setfilteredExpenses(expenses);
+    }, 
+    [expenses]);
+
+    const handleChange = (event) => {
+        const searchResults = expenses.filter((filterExpenses) =>
+            filterExpenses.name.toLowerCase().includes(event.target.value)
+            );
+            setfilteredExpenses(searchResults);
+   };
+
+    //returning expenses values in a list using map function when searching
     return (
+     <>
+       <input type='text' className='form-control mb-2 mr-sm-2'
+        placeholder='Type to search' onChange={handleChange} 
+        /> 
         <ul className='list-group'>
-            {expenses.map((expense) => 
+            {filterExpenses.map((expense) => 
             (<ExpenseItem 
                 id={expense.id}
                 name={expense.name} 
                 cost={expense.cost} />))}
         </ul>
+     </>
     );
 };
 
