@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import ExpenseItem from './ExpenseItem';
 import { AppContext } from '../context/AppContext';
 
@@ -8,35 +9,47 @@ const ExpenseList = () => {
     //using destruction to get values
     const {expenses} = useContext(AppContext);
 
-    //filetring results for when searching
-    const [filterExpenses, setfilteredExpenses] = useState(expenses || []);
 
-    useEffect(() => {
+    //Filtering method for search list in expanse
+    const [filteredExpenses, setfilteredExpenses] = useState(expenses || []);
+    const[searchTerm, setSearchTerm] = useState('');
+
+    useEffect(()=> {
         setfilteredExpenses(expenses);
-    }, 
-    [expenses]);
+    }, [expenses]);
 
+
+    //handle search filter event
     const handleChange = (event) => {
-        const searchResults = expenses.filter((filterExpenses) =>
-            filterExpenses.name.toLowerCase().includes(event.target.value)
-            );
-            setfilteredExpenses(searchResults);
-   };
+        const searchTerm = event.target.value.toLowerCase();
+        setSearchTerm(searchTerm);
 
-    //returning expenses values in a list using map function when searching
+        const searchResults = expenses.filter((filteredExpense) =>
+            filteredExpense.name.toLowerCase().includes(searchTerm)
+        );
+        setfilteredExpenses(searchResults);
+    };
+
+    //returning array values in a list using map function
     return (
-     <>
-       <input type='text' className='form-control mb-2 mr-sm-2'
-        placeholder='Type to search' onChange={handleChange} 
-        /> 
+     <div>
+        <input 
+        type = 'text'
+        value = {searchTerm}
+        onChange= {handleChange}
+        placeholder='Search Expenses'
+        className='form-control'
+        />
+
         <ul className='list-group'>
-            {filterExpenses.map((expense) => 
+            {filteredExpenses.map((expense) => 
             (<ExpenseItem 
+                key={expense.id}
                 id={expense.id}
                 name={expense.name} 
                 cost={expense.cost} />))}
         </ul>
-     </>
+     </div>
     );
 };
 
