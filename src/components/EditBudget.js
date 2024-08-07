@@ -3,7 +3,8 @@ import React, {useState} from "react";
 const EditBudget = (props) => {
 
     const [value, setvalue] = useState(props.budget); 
-
+    
+// adds edit button to budget and saves new value on click
     return(
      <>
      <input
